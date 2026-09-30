@@ -43,9 +43,8 @@ transactionSchema.index(
 );
 transactionSchema.index({ dateKey: 1, type: 1 });
 
-transactionSchema.pre('validate', function (next) {
+transactionSchema.pre('validate', function () {
   if (this.occurredAt) this.dateKey = istDateKey(this.occurredAt);
-  next();
 });
 
 export default mongoose.model('Transaction', transactionSchema);
